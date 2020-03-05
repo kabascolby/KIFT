@@ -11,4 +11,4 @@ KIFT is a 42 project for digital voice assistant using on CMU Pocket Sphynx libr
 
 ## Macosx installation
 
-## Implementation
+## Implementations
