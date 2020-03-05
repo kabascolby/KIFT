@@ -9,7 +9,7 @@ KIFT is a 42 project for digital voice assistant (Ex: Siri, Cortana, Bixby...) i
 
 ## Prerequisites
 
-## Macosx installation
+## Installation
 
 ## Implementations
 
