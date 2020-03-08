@@ -6,7 +6,7 @@
 /*   By: lkaba <lkaba@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:46:52 by lkaba             #+#    #+#             */
-/*   Updated: 2020/03/07 16:58:19 by lkaba            ###   ########.fr       */
+/*   Updated: 2020/03/07 18:40:57 by lkaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int main(int argc,char **argv)
         fgets(sendline, BUFSIZE, stdin);
         write(socket_fd, sendline, strlen(sendline)+1);
         read(socket_fd, recvline, 100);
-        printf("%s",recvline);
+        printf("\033[1;34mServer ->\033[m %s",recvline);
     }
     return (0);
 }
