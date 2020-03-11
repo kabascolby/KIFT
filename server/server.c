@@ -6,7 +6,7 @@
 /*   By: lkaba <lkaba@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 13:14:16 by lkaba             #+#    #+#             */
-/*   Updated: 2020/03/07 18:49:25 by lkaba            ###   ########.fr       */
+/*   Updated: 2020/03/11 08:00:14 by lkaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 	bind(listen_fd, (struct sockaddr *) &server_address, sizeof(server_address));
 	listen(listen_fd, 10);
 	status = accept(listen_fd, (struct sockaddr*) NULL, NULL);
+	char *cmd1 = "light of";
 	while (1)
 	{
 		bzero(str, BUFSIZE);
@@ -37,7 +38,8 @@ int	main(int argc, char **argv)
 		if (status)
 		{
 			fprintf(stdout,"\033[1;34mClient ->\033[m %s", str);
-			write(status, str, strlen(str)+1);
+			// write(status, str, strlen(str)+1);
+			write(status, cmd1, strlen(cmd1)+1);
 		}
 	}
 	return (0);
