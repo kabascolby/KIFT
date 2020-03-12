@@ -6,7 +6,7 @@
 /*   By: lkaba <lkaba@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 20:05:20 by lkaba             #+#    #+#             */
-/*   Updated: 2020/03/11 07:37:23 by lkaba            ###   ########.fr       */
+/*   Updated: 2020/03/11 08:39:31 by lkaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static int8_t		get_index(char *cmd, char *builtins)
 	ftpr_size = sizeof(cmd_fptr) / sizeof(*cmd_fptr);
 
 	/* Bondry checking for security purpose */
-	return ((tmp  && i < (ftpr_size - 1)) ? i : ftpr_size);
+	printf("index = %d  | ptr_size = %d\n", i, ftpr_size);
+	return (tmp ? i : ftpr_size - 1);
 }
 
 static void		split_input(char **args, char *input)
@@ -46,13 +47,13 @@ static void		split_input(char **args, char *input)
 
 void			server_request_handler(char *request)
 {
-	char **args;
+	char *args[3];
 
-	args = (char *[3]){0};
+	// args = (char *[3]){0};
 
 	split_input(args, request);
 
-	if (cmd_fptr[get_index(args[0], BUILTINS)](args[1]))
+	if (cmd_fptr[get_index(args[0], strdup(BUILTINS))](args[1]))
 	{
 		printf("invalide command\n");
 	}

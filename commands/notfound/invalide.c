@@ -6,7 +6,7 @@
 /*   By: lkaba <lkaba@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 07:20:21 by lkaba             #+#    #+#             */
-/*   Updated: 2020/03/11 07:41:20 by lkaba            ###   ########.fr       */
+/*   Updated: 2020/03/11 08:51:35 by lkaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 int	invalide(char *argv)
 {
 	(void)argv;
-	return system("say -v invalide command");
+	system("say -v command not found");
+	return 0;
 }
