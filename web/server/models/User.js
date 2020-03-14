@@ -1,23 +1,25 @@
-const mongoose = require("mongoose");
+const Sequelize = require('sequelize')
+const sequelize = require('../db');
 
-const UserSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    required: true,
-    unique: true
+const User = sequelize.define('user', {
+  ip: {
+    type: Sequelize.STRING
   },
-  password: {
-    type: String,
-    required: true
-  },
-  date: {
-    created: {
-      type: Date,
-      default: Date.now()
-    }
+  history: {
+    type: Sequelize.JSON
   }
+}, {
+  // options
 });
 
-const User = mongoose.model("user", UserSchema);
+User.sync({ force: true }).then(() => {
+  // Now the `users` table in the database corresponds to the model definition
+  return User.create({
+    ip: "test",
+    history: {
+      test: "test"
+    }
+  });
+});
 
 module.exports = User;

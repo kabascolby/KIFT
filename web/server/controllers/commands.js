@@ -1,11 +1,17 @@
-const Command = require("../models/Command");
+const User = require('../models/User');
 
 // @route   GET /commands
 // @desc    Get all commands
 // @access  Public
 exports.getCommands = async (req, res) => {
   try {
-    let commands = await Command.find();
+    let commands = await User.findAll({
+      attributes: ['history'],
+      where: {
+        ip: req.connection.remoteAddress
+      }
+    });
+    console.log(commands);
     return res.status(200).json(commands);
   } catch (err) {
     console.error(err.message);
