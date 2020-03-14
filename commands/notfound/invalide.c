@@ -1,13 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   requestHandler.c                                   :+:      :+:    :+:   */
+/*   invalide.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkaba <lkaba@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/10 20:05:20 by lkaba             #+#    #+#             */
-/*   Updated: 2020/03/10 20:07:52 by lkaba            ###   ########.fr       */
+/*   Created: 2020/03/11 07:20:21 by lkaba             #+#    #+#             */
+/*   Updated: 2020/03/11 08:51:35 by lkaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "client.h"
+#include "../../client/client.h"
+
+int	invalide(char *argv)
+{
+	(void)argv;
+	system("say -v command not found");
+	return 0;
+}

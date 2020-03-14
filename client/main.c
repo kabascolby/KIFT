@@ -6,7 +6,7 @@
 /*   By: lkaba <lkaba@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 09:42:15 by lkaba             #+#    #+#             */
-/*   Updated: 2020/03/10 20:02:19 by lkaba            ###   ########.fr       */
+/*   Updated: 2020/03/11 08:26:20 by lkaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@ int main(int argc, char **argv)
 		bzero(recvline, BUFSIZE);
 		fgets(sendline, BUFSIZE, stdin);
 		dprintf(config.socket_fd, "%s", sendline);
-		read(config.socket_fd, recvline, 100);
-		printf("\033[1;34mServer ->\033[m %s", recvline);
+		if (read(config.socket_fd, recvline, BUFSIZE))
+		{
+			server_request_handler(recvline);
+			printf("\033[1;34mServer ->\033[m %s", recvline);
+		}
 	}
 	close(config.socket_fd);
 	return (0);

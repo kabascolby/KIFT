@@ -6,7 +6,7 @@
 /*   By: lkaba <lkaba@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:46:52 by lkaba             #+#    #+#             */
-/*   Updated: 2020/03/10 20:06:13 by lkaba            ###   ########.fr       */
+/*   Updated: 2020/03/11 08:16:23 by lkaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ uint8_t		create_connection(t_config *config, int port)
 
 	/* put host's address in socket structure */
 	// inet_aton(SERVERIP, &server_address.sin_addr);
-	server_address.sin_addr.s_addr = inet_addr(SERVERIP);
+	server_address.sin_addr.s_addr = INADDR_ANY;
+	// server_address.sin_addr.s_addr = inet_addr(SERVERIP);
 
 
 	/* put host's address family and the port in socket structure */
