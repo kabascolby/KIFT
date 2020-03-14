@@ -6,10 +6,11 @@ const dbUser = config.db.user;
 const dbPass = config.db.password;
 const dbName = config.db.name;
 
-const dbURI = `mongodb+srv://${dbUser}:${dbPass}@${dbHost}/${dbName}?retryWrites=true&w=majority`;
+const dbURI = `mongodb://${dbHost}/${dbName}`;
 
 exports.connectDB = async () => {
   try {
+	  console.log("TRYING");
     await mongoose.connect(dbURI, {
       useNewUrlParser: true,
       useFindAndModify: false,
