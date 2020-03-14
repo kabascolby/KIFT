@@ -12,36 +12,53 @@
 
 #include "server.h"
 
-int	main(int argc, char **argv)
+static int check_port(uint16_t port)
 {
-	char	str[BUFSIZE];
-	int		listen_fd;
-	int 	status;
-    if (argc != 2 || (argc == 2 && (atoi(argv[1]) < 1024 || atoi(argv[1]) > 65535)))
-    {
-        fprintf(stderr, "Invalid port, enter (1024 - 65535.)\n");
-        return (-1);
-    }
-	listen_fd = socket(AF_INET, SOCK_STREAM, 0);
-	bzero(&server_address, sizeof(server_address));
-	server_address.sin_family = AF_INET;
-	server_address.sin_addr.s_addr = htons(INADDR_ANY);
-	server_address.sin_port = htons(atoi(argv[1]));
-	bind(listen_fd, (struct sockaddr *) &server_address, sizeof(server_address));
-	listen(listen_fd, 10);
-	status = accept(listen_fd, (struct sockaddr*) NULL, NULL);
-	// char *cmd1 = "light off";
-	char *cmd1 = "invalide";
-	while (1)
+	if (port < 1024 || port > 65535)
 	{
-		bzero(str, BUFSIZE);
-		read(status,str,BUFSIZE);
-		if (status)
-		{
-			fprintf(stdout,"\033[1;34mClient ->\033[m %s", str);
-			// write(status, str, strlen(str)+1);
-			send(status, cmd1, strlen(cmd1)+1, 0);
-		}
+		fprintf(stderr, "Invalid port, enter (1024 - 65535.)\n");
+		return (1);
+	}
+	return (0);
+}
+
+uint8_t create_server(t_config *config, int port)
+{
+	struct sockaddr_in server_address;
+	struct hostent *host_entry;
+
+	if (check_port(port))
+		return (1);
+
+	if ((config->socket_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+	{
+		fprintf(stderr, "can't open socket");
+		return (1);
+	}
+	bzero(&server_address, sizeof(server_address));
+
+	/* put host's address in socket structure */
+	server_address.sin_addr.s_addr = htons(INADDR_ANY);
+
+	/* put host's address family and the port in socket structure */
+	server_address.sin_family = AF_INET;
+	server_address.sin_port = htons(port);
+
+	/* After the socket descriptor is created, a bind() function gets a */
+	/* unique name for the socket*/
+
+	if ((bind(config->socket_fd, (struct sockaddr *)&server_address, sizeof(server_address))) < 0)
+	{
+		perror("bind() failed");
+		return (1);
+	}
+
+	listen(config->socket_fd, 10);
+
+	if ((config->status = accept(config->socket_fd, (struct sockaddr *)NULL, NULL)) < 0)
+	{
+		perror("bind() failed");
+		return (1);
 	}
 	return (0);
 }

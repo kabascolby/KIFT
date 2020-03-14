@@ -11,31 +11,40 @@
 /* ************************************************************************** */
 
 #ifndef SERVER_H
-# define SERVER_H
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/types.h>
-# include <sys/socket.h>
-# include <netdb.h>
-# include <netinet/in.h>
-# include <arpa/inet.h>
-# include <time.h>
-# include <stdarg.h>
-# define BUFSIZE 200
+#define SERVER_H
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <time.h>
+#include <stdarg.h>
+#define BUFSIZE 200
 
-typedef struct s_req		t_req;
+typedef struct s_sconfig t_config;
 
-typedef struct s_myna		t_myna;
+typedef struct s_myna t_myna;
 struct sockaddr_in server_address;
 
-struct	s_myna
+struct s_sconfig
 {
-	uint8_t		is_keyword;
-	char		**cmd;
-	char		*req_time;
-	uint8_t		status;
+	char server_name[256];
+	int8_t socket_fd;
+	uint16_t port;
+	int8_t status;
 };
+struct s_myna
+{
+	uint8_t is_keyword;
+	char **cmd;
+	char *req_time;
+	uint8_t status;
+};
+
+uint8_t create_server(t_config *config, int port);
 
 #endif
