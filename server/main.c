@@ -21,11 +21,11 @@ int main(int argc, char **argv)
     while (1)
     {
         bzero(str, BUFSIZE);
-        read(config.status, str, BUFSIZE);
-        if (config.status)
+
+        if (config.status && read(config.status, str, BUFSIZE))
         {
             fprintf(stdout, "\033[1;34mClient ->\033[m %s", str);
-            // write(status, str, strlen(str)+1);
+            write(config.status, str, strlen(str) + 1);
             send(config.status, cmd1, strlen(cmd1) + 1, 0);
         }
     }
