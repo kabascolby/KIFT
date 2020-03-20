@@ -1,6 +1,5 @@
-server/server
-.vscode/
 .vscode
+server/server
 DS*
 .nfs*
 ._*
