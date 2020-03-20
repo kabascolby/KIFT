@@ -1,5 +1,5 @@
 server/server
-*.h.json
+*.vscode
 DS*
 .nfs*
 ._*
