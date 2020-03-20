@@ -1,4 +1,5 @@
 server/server
+*.h.json
 DS*
 .nfs*
 ._*
