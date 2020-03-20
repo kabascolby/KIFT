@@ -6,7 +6,7 @@
 /*   By: lkaba <lkaba@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 10:34:31 by lkaba             #+#    #+#             */
-/*   Updated: 2020/03/17 21:58:28 by lkaba            ###   ########.fr       */
+/*   Updated: 2020/03/20 09:14:42 by lkaba            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include <arpa/inet.h>
 #include <time.h>
 #include <stdarg.h>
-#define BUFSIZE 500
+#define BUFSIZE 4096
 
 typedef struct s_sconfig t_config;
 
